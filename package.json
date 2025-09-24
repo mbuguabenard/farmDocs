@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@prisma/client": "^6.16.2",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/auth-helpers-react": "^0.5.0",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.57.4",
     "bcrypt": "^6.0.0",
     "lucide-react": "^0.544.0",
     "next": "15.5.3",
@@ -21,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@prisma/engines": "^6.16.2",
     "@tailwindcss/postcss": "^4",
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^20",

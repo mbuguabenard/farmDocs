@@ -5,7 +5,8 @@ import Footer from "@/components/layout/Footer";
 import AboutSection from "@/components/sections/AboutSection";
 import HowItWorks from "@/components/sections/HowItWorks";
 
-export default function () {
+export default function HomePage() {
+
   return (
     <>
     <HeroSection

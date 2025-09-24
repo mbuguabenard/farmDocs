@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -14,10 +8,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id String @id@default(cuid())
-  email String @unique
-  password String
-  name String?
-  createdAt DateTime @default(now())
+/// This maps to Supabase's built-in auth.users table.
+/// Supabase manages this automatically (don’t try to migrate it with Prisma).
+model AuthUser {
+  id        String   @id
+  email     String?
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+
+  // Relation to your app-specific profile
+  profile   UserProfile?
+}
+
+/// Your custom profile table linked to Supabase Auth
+model UserProfile {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  authUser    AuthUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  bio         String?
+  farmingType String
+  farmSize    String
+  location    String?
+  experience  Int?
+  createdAt   DateTime @default(now())
 }
